@@ -30,7 +30,7 @@ update:
 afterboot:
 	echo "Setting files after boot"
 	cp git-pull.service ${SYS_DIR}
-	cp make-start ${SYS_DIR}
+	cp make-start.service ${SYS_DIR}
 	systemctl --user enable git-pull.service
 	systemctl --user enable make-start.service
 
