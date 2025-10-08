@@ -1,11 +1,11 @@
 [Unit]
-Description=pnpm start service
+Description=Makefile start service
 After=network.target git-pull.service
 
 [Service]
 User=myusername
-WorkingDirectory=/home/pi/git/gethomepage
-ExecStart=/usr/local/bin/pnpm start
+WorkingDirectory=/home/pi/git/homepage
+ExecStart=/usr/bin/make start
 Restart=always
 
 [Install]
