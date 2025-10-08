@@ -1,12 +1,15 @@
 [Unit]
 Description=Makefile start service
-After=network.target git-pull.service
+After=git-pull.service
+StartLimitIntervalSec=300
+StartLimitBurst=3
 
 [Service]
-User=myusername
+Type=oneshot
 WorkingDirectory=/home/pi/git/homepage
 ExecStart=/usr/bin/make start
-Restart=always
+Restart=on-failure
+RestartSec=300 # Wait 5 minutes between retries
 
 [Install]
 WantedBy=default.target
