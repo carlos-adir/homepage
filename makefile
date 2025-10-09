@@ -8,6 +8,7 @@ BRANCH="main"
 SYS_DIR=${HOME_DIR}/.config/systemd/user
 
 start:
+	cd files && cp * ${WORK_DIR}/config
 	cd ${WORK_DIR} && HOMEPAGE_ALLOWED_HOSTS=${HOSTS} pnpm start &
 
 build:
@@ -20,13 +21,8 @@ stop:
 	echo ${HOME_DIR}
 	echo ${GIT_DIR}
 
-repo:
-	# This should be run only once, when the OS boots at first time |\
-	echo Branch: ${BRANCH}
-	echo Git repo: ${GIT_REPO}
-	echo Destiny: ${WORK_DIR}
-	git clone -b ${BRANCH} --depth 1 --single-branch ${GIT_REPO} ${WORK_DIR}
-	cd ${WORK_DIR} && pnpm install --max-old-space-size=512
+setup:
+	cd setup && sudo ./setup.sh
 
 clean:
 	rm -rf ${WORK_DIR}

@@ -44,9 +44,15 @@ if ! echo "$password" | sudo -S npm install -g pnpm; then
 fi
 
 echo "Setting files after boot"
-cp git-pull.service ${SYS_DIR}
-cp make-start.service ${SYS_DIR}
-systemctl --user enable git-pull.service
-systemctl --user enable make-start.service
+cp after-boot.service ${SYS_DIR}
+systemctl --user enable after-boot.service
+chmod +x after-boot.sh
+
+# This should be run only once, when the OS boots at first time |\
+echo "Branch: ${BRANCH}"
+echo "Git repo: ${GIT_REPO}"
+echo "Destiny: ${WORK_DIR}"
+git clone -b ${BRANCH} --depth 1 --single-branch ${GIT_REPO} ${WORK_DIR}
+cd ${WORK_DIR} && pnpm install --max-old-space-size=512
 
 echo "\nAll operations completed successfully!"
