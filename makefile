@@ -26,7 +26,7 @@ setup:
 
 refresh:
 	git pull
-	echo "|" >> ${WORK_DIR}/config/counter.txt"
+	echo '|' >> ${WORK_DIR}/config/counter.txt
 
 after-boot: refresh start
 
