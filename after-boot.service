@@ -1,13 +1,13 @@
 [Unit]
-Description=Makefile start service
-After=git-pull.service
+Description=After boot
+After=network.target
 StartLimitIntervalSec=300
 StartLimitBurst=3
 
 [Service]
 Type=oneshot
 WorkingDirectory=/home/pi/git/homepage
-ExecStart=/usr/bin/make start
+ExecStart=./after-boot.sh
 Restart=on-failure
 RestartSec=300 # Wait 5 minutes between retries
 

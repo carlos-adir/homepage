@@ -20,29 +20,7 @@ stop:
 	echo ${HOME_DIR}
 	echo ${GIT_DIR}
 
-setup: update afterboot packages gitrepo build
-
-update:
-	echo "Updating system..."
-	apt-get update
-	apt-get upgrade
-
-afterboot:
-	echo "Setting files after boot"
-	cp git-pull.service ${SYS_DIR}
-	cp make-start.service ${SYS_DIR}
-	systemctl --user enable git-pull.service
-	systemctl --user enable make-start.service
-
-packages:
-	echo "Installing basic packages..."
-	apt-get update
-	apt-get upgrade
-	apt-get install git
-	apt-get install npm
-	npm install -g pnpm
-
-gitrepo:
+repo:
 	# This should be run only once, when the OS boots at first time |\
 	echo Branch: ${BRANCH}
 	echo Git repo: ${GIT_REPO}
