@@ -7,10 +7,6 @@ GIT_REPO="https://github.com/gethomepage/homepage.git"
 BRANCH="main"
 SYS_DIR=${HOME_DIR}/.config/systemd/user
 
-start:
-	cd files && cp * ${WORK_DIR}/config
-	cd ${WORK_DIR} && HOMEPAGE_ALLOWED_HOSTS=${HOSTS} pnpm start &
-
 build:
 	# This should be run when an big update happens
 	cd ${WORK_DIR} && pnpm build
@@ -24,11 +20,11 @@ stop:
 setup:
 	cd setup && sudo ./setup.sh
 
-refresh:
+after-boot:
 	git pull
 	echo '|' >> ${WORK_DIR}/config/counter.txt
-
-after-boot: refresh start
+	cd files && cp * ${WORK_DIR}/config
+	cd ${WORK_DIR} && HOMEPAGE_ALLOWED_HOSTS=${HOSTS} pnpm start &
 
 clean:
 	rm -rf ${WORK_DIR}
