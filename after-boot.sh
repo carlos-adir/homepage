@@ -1,4 +1,3 @@
 #!/bin/bash
 
-git pull
-make start
+make after-boot
