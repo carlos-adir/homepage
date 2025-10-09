@@ -10,8 +10,8 @@ WorkingDirectory=/home/pi/git/homepage
 ExecStart=/usr/bin/make after-boot
 Restart=on-failure
 RestartSec=300 # Wait 5 minutes between retries
-StandardOutput=syslog.out
-StandardError=syslog.err
+StandardOutput=syslog
+StandardError=syslog
 
 [Install]
 WantedBy=default.target
