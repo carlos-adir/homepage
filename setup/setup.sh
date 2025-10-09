@@ -46,7 +46,6 @@ fi
 echo "Setting files after boot"
 cp after-boot.service ${SYS_DIR}
 systemctl --user enable after-boot.service
-chmod +x after-boot.sh
 
 # This should be run only once, when the OS boots at first time |\
 echo "Branch: ${BRANCH}"
