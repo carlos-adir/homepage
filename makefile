@@ -1,4 +1,3 @@
-.SILENT:
 HOSTS = "*"
 HOME_DIR?=${shell cd ~ && pwd}
 GIT_DIR=${HOME_DIR}/git
@@ -25,7 +24,7 @@ after-boot:
 	echo '|' >> ${WORK_DIR}/config/counter.txt
 	cd files && cp * ${WORK_DIR}/config
 	echo '+' >> ${WORK_DIR}/config/counter.txt
-	cd ${WORK_DIR} && HOMEPAGE_ALLOWED_HOSTS=${HOSTS} pnpm start &
+	cd ${WORK_DIR} && HOMEPAGE_ALLOWED_HOSTS=${HOSTS} pnpm start
 	echo '-' >> ${WORK_DIR}/config/counter.txt
 
 clean:
