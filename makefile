@@ -24,5 +24,10 @@ stop:
 setup:
 	cd setup && sudo ./setup.sh
 
+refresh:
+	git pull
+
+after-boot: refresh start
+
 clean:
 	rm -rf ${WORK_DIR}
