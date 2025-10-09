@@ -24,7 +24,9 @@ after-boot:
 	git pull
 	echo '|' >> ${WORK_DIR}/config/counter.txt
 	cd files && cp * ${WORK_DIR}/config
+	echo '+' >> ${WORK_DIR}/config/counter.txt
 	cd ${WORK_DIR} && HOMEPAGE_ALLOWED_HOSTS=${HOSTS} pnpm start &
+	echo '-' >> ${WORK_DIR}/config/counter.txt
 
 clean:
 	rm -rf ${WORK_DIR}
